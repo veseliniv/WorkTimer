@@ -1,0 +1,276 @@
+﻿<Window x:Class="WorkTimer.Views.ChooseProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vms="clr-namespace:WorkTimer.ViewModels"
+        MinHeight="100" 
+        Width="550"
+        Background="LightGray" 
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        Name="mainWindow"
+        Closed="WindowClosed"
+        VerticalContentAlignment="Top"
+        ResizeMode="CanResize" Loaded="MainWindow_Loaded">
+
+
+    <Window.DataContext>
+        <vms:WorkTimerViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Image x:Key="imagePlay" Source="../Images/Buttons/buttonPlay.jpg"/>
+        <Image x:Key="imagePause" Source="../Images/Buttons/buttonPause.jpg"/>
+        <Image x:Key="imageStop" Source="../Images/Buttons/buttonStop.jpg"/>
+        <Image x:Key="imageReset" Source="../Images/Buttons/buttonReset.jpg"/>
+        <Image x:Key="imageSave" Source="../Images/Buttons/buttonSave.jpg"/>
+        <Image x:Key="imageExportToWord" Source="../Images/Buttons/buttonExportDOC.jpg"/>
+        <Image x:Key="imageExportToExcel" Source="../Images/Buttons/buttonExportXLS.jpg"/>
+        <Image x:Key="imageExportToPDF" Source="../Images/Buttons/buttonExportPDF.jpg"/>
+        <Image x:Key="imageExportToTXT" Source="../Images/Buttons/buttonExportTXT.jpg"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <!--<RowDefinition Height="Auto" />-->
+            </Grid.RowDefinitions>
+
+            <Grid Name="gridTask" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Grid Name="gridNewProject" 
+                      Grid.Row="0">
+
+                    <Label Name="labelNewProjectName" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="30"
+                           FontStyle="Italic"
+                           IsEnabled="False"
+                           HorizontalContentAlignment="Center"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="labelEnterTaskName" 
+                           Content="Task Name:" 
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Width="128"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           Height="35"
+                           FontSize="15"
+                           HorizontalContentAlignment="Right"/>
+
+                    <Label x:Name="labelTaskName" 
+                           Width="128"
+                           Height="35"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           FontSize="15"
+                           HorizontalContentAlignment="Left"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+                <Label x:Name="labelTimeElapsed"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" 
+                       Width="400" 
+                       Height="86"
+                       FontSize="40"
+                       HorizontalContentAlignment="Center"/>
+            </Grid>
+        </Grid>
+        
+        <Grid Name="gridButtons" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="buttonStartTimer" 
+                    Content="{StaticResource imagePlay}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="31"
+                    Height="29"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Background="LightGray"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Command="{Binding StartTimerCommand}"
+                    ToolTip="Play"/>
+
+            <Button x:Name="buttonPauseTimer" 
+                    Content="{StaticResource imagePause}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="31"
+                    Height="29"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Background="LightGray"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Visibility="Hidden"
+                    Command="{Binding PauseTimerCommand}"
+                    ToolTip="Pause"/>
+
+            <Button x:Name="buttonStopTimer" 
+                    Content="{StaticResource imageStop}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="31"
+                    Height="29"
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Background="LightGray"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Command="{Binding StopTimerCommand}"
+                    ToolTip="Stop"/>
+
+            <Button x:Name="buttonResetTimer" 
+                    Content="{StaticResource imageReset}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="31"
+                    Height="29"
+                    Grid.Row="0"
+                    Grid.Column="5"
+                    Background="LightGray"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Command="{Binding RestartTimerCommand}"
+                    ToolTip="Reset"/>
+
+            <Button x:Name="buttonSaveTimer" 
+                    Content="{StaticResource imageSave}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="31"
+                    Height="29"
+                    Grid.Row="0"
+                    Grid.Column="7"
+                    Background="LightGray"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Command="{Binding SaveTimerCommand}"
+                    ToolTip="Save"/>
+
+            <Button x:Name="buttonExportToWord"
+                    Content="{StaticResource imageExportToWord}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="31"
+                    Height="29"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Background="LightGray"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Command="{Binding ExportToWordCommand}"
+                    CommandParameter="{Binding ElementName=buttonExportToWord, Path=Name}"
+                    ToolTip="Export To Word"/>
+
+            <Button x:Name="buttonExportToExcel" 
+                    Content="{StaticResource imageExportToExcel}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="31"
+                    Height="29"
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    Background="LightGray"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Command="{Binding ExportToExcelCommand}"
+                    CommandParameter="{Binding ElementName=buttonExportToExcel, Path=Name}"
+                    ToolTip="Export To Excel"/>
+
+            <Button x:Name="buttonExportToTXT" 
+                    Content="{StaticResource imageExportToTXT}" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="31"
+                    Height="29"
+                    Grid.Row="1"
+                    Grid.Column="6"
+                    Background="LightGray"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Command="{Binding ExportToTXTCommand}"
+                    ToolTip="Export To Text File"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <DataGrid Name="dataGridTimes"
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserAddRows="False"
+                      Grid.Row="1"
+                          Height="Auto">
+                    <DataGrid.Columns>
+                        <!--<DataGridCheckBoxColumn />-->
+                        <DataGridTextColumn Header="Project" Binding="{Binding Task.Project.Name}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Task" Binding="{Binding Task.Name}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Time" Binding="{Binding Time}" Width="*" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+        </Grid>
+
+        <!--<Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="buttonShowTimes" 
+                    Content="Show All Times" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="208"
+                    Grid.Row="1"
+                    Background="White"/>
+        </Grid>-->
+    </Grid>
+</Window>

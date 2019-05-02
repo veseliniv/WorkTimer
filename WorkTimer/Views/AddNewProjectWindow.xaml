@@ -1,0 +1,56 @@
+﻿<Window x:Class="WorkTimer.Views.AddNewProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vms="clr-namespace:WorkTimer.ViewModels"
+        Title="Add New Project" 
+        Height="150" 
+        Width="550"
+        Background="LightGray" 
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        ResizeMode="NoResize"
+        WindowStyle="ToolWindow">
+
+    <Window.DataContext>
+        <vms:WorkTimerViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="labelEnterProjectName" 
+                   Content="Enter Project Name:" 
+                   HorizontalAlignment="Right" 
+                   Width="140"
+                   Grid.Column="0"
+                   Height="35"
+                   FontSize="15"/>
+
+            <TextBox x:Name="textBoxProjectName" 
+                     Height="26"  
+                     TextWrapping="Wrap"  
+                     Width="197"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Text="{Binding NewProject.Name}"/>
+        </Grid>
+
+        <Button x:Name="buttonAddNewProject" 
+                Content="Add Project" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Width="208"
+                Background="White"
+                Grid.Row="1"
+                Command="{Binding AddNewProjectCommand}"/>
+    </Grid>
+</Window>

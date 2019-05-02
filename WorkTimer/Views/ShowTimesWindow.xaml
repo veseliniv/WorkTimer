@@ -1,0 +1,93 @@
+﻿<Window x:Class="WorkTimer.Views.ShowTimesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vms="clr-namespace:WorkTimer.ViewModels"
+        Title="All Times" 
+        Height="500" 
+        Width="550"
+        Background="LightGray"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vms:WorkTimerViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+        
+        <DataGrid ItemsSource="{Binding Times}" 
+                  AutoGenerateColumns="False" 
+                  CanUserResizeColumns="False"
+                  CanUserAddRows="False"
+                  Grid.Row="0">
+            
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Width="50"/>
+                <DataGridTextColumn Header="Task" 
+                                    Binding="{Binding Task.Name}" 
+                                    Width="*" 
+                                    IsReadOnly="True"/>
+                
+                <DataGridTextColumn Header="Time" 
+                                    Binding="{Binding Time}" 
+                                    Width="*" 
+                                    IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Button x:Name="buttonSumAllTimes" 
+                Content="Sum All Times" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Width="208"
+                Background="White"
+                Grid.Column="0"/>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="labelEnterTaskName" 
+                           Content="Enter Task Name:" 
+                           HorizontalAlignment="Right" 
+                           Width="128"
+                           Grid.Column="0"
+                           Height="35"
+                           FontSize="15"/>
+
+                    <TextBox x:Name="textBoxTaskName" 
+                             Height="26"  
+                             TextWrapping="Wrap"  
+                             Width="130"
+                             Grid.Column="1"
+                             HorizontalAlignment="Left"/>
+                </Grid>
+
+                <Button x:Name="buttonSearchByTaskName" 
+                        Content="Search" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Width="208"
+                        Background="White"
+                        Grid.Row="1"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

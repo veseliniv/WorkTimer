@@ -1,0 +1,107 @@
+﻿<Window x:Class="WorkTimer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vms="clr-namespace:WorkTimer.ViewModels"
+        Title="Choose Project" 
+        Height="150" 
+        Width="550"
+        Background="LightGray" 
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow">
+    
+    <Window.DataContext>
+        <vms:WorkTimerViewModel/>
+    </Window.DataContext>
+    
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Label x:Name="labelChooseProject" 
+                       Content = "Choose Project" 
+                       HorizontalAlignment="Right" 
+                       Width="128"
+                       Grid.Column="0"
+                       Height="35"
+                       FontSize="15"
+                       VerticalAlignment="Center"/>
+
+                <ComboBox Name="comboBoxChooseProject"
+                          ItemsSource="{Binding Projects}"
+                          Width="195"
+                          Grid.Column="1"
+                          Height="25"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="Name"
+                          Background="White"
+                          SelectedValue="{Binding NewProject.Name}"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="labelEnterTaskName" 
+                       Content="Enter Task Name:" 
+                       HorizontalAlignment="Right" 
+                       Width="128"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       Height="35"
+                       FontSize="15"/>
+
+                <TextBox x:Name="textBoxTaskName" 
+                         Height="20"  
+                         TextWrapping="Wrap"  
+                         Width="197"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         RenderTransformOrigin="0.509,-0.657"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="{Binding NewTask.Name}"/>
+            </Grid>
+            
+            <Button x:Name="buttonShowTimesByProject" 
+                    Content="Show Times By Project" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="208"
+                    Background="White"
+                    Grid.Row="2"
+                    Command="{Binding GetTimesByProject}"/>
+
+        </Grid>
+
+        <Button x:Name="buttonAddNewProject" 
+                Content="Add New Project" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Width="208"
+                Background="White"
+                Grid.Row="1"
+                Command="{Binding OpenNewProjectWindowCommand}"/>
+    </Grid>
+</Window>
+
+    

@@ -1,0 +1,33 @@
+﻿<Window x:Class="WorkTimer.Views.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vms="clr-namespace:WorkTimer.ViewModels"
+        Title="CenterScreen" 
+        Height="500" 
+        Width="550"
+        Background="LightGray"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vms:WorkTimerViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <DataGrid ItemsSource="{Binding Times}" 
+                  AutoGenerateColumns="False" 
+                  CanUserResizeColumns="False"
+                  CanUserAddRows="False"
+                  Grid.Row="0">
+
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Width="50"/>
+                
+                <DataGridTextColumn Header="Time" 
+                                    Binding="{Binding Time}" 
+                                    Width="*" 
+                                    IsReadOnly="True"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</Window>
